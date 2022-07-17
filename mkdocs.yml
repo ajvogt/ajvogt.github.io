@@ -1,1 +1,16 @@
-site_name: My Docs
+site_name: Adam J. Vogt
+site_url: https://ajvogt.github.io
+theme:
+  name: material
+  features:
+    - toc.integrate
+extra:
+  social:
+    - icon: fontawesome/brands/linkedin
+      link: www.linkedin.com/in/adamjvogt
+    - icon: fontawesome/brands/github
+      link: https://github.com/ajvogt
+nav:
+    - Home: index.md
+
+
