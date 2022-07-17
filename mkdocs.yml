@@ -4,6 +4,9 @@ theme:
   name: material
   features:
     - toc.integrate
+    - navigation.instant
+plugins:
+  - mkdocs-jupyter
 extra:
   social:
     - icon: fontawesome/brands/linkedin
@@ -12,5 +15,8 @@ extra:
       link: https://github.com/ajvogt
 nav:
     - Home: index.md
+    - MNIST Image Classifier: ImageClassification.ipynb
+    - Voting Record Classifier: VotingRecord.ipynb
+    - COVID-19 Pandemic Analysis: missouri_analysis.md
 
 
