@@ -1,0 +1,769 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://ajvogt.github.io/nfl_pickem/">
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.3.9">
+    
+    
+      
+        <title>NFL Pickem Optimization - Adam J. Vogt</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.1d29e8d0.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.cbb835fc.min.css">
+        
+      
+      
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#context-survivor-pool" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Adam J. Vogt" class="md-header__button md-logo" aria-label="Adam J. Vogt" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Adam J. Vogt
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              NFL Pickem Optimization
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href=".." class="md-tabs__link">
+      Home
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../ImageClassification/" class="md-tabs__link">
+      Image Classification Demo: Handwritten Digits
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../VotingRecord/" class="md-tabs__link">
+      Classification: Identifying US House Member Party Affiliation
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../missouri_analysis/" class="md-tabs__link">
+      COVID-19 Pandemic Analysis
+    </a>
+  </li>
+
+      
+        
+  
+  
+    
+  
+
+
+  <li class="md-tabs__item">
+    <a href="./" class="md-tabs__link md-tabs__link--active">
+      NFL Pickem Optimization
+    </a>
+  </li>
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Adam J. Vogt" class="md-nav__button md-logo" aria-label="Adam J. Vogt" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Adam J. Vogt
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ImageClassification/" class="md-nav__link">
+        Image Classification Demo: Handwritten Digits
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../VotingRecord/" class="md-nav__link">
+        Classification: Identifying US House Member Party Affiliation
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../missouri_analysis/" class="md-nav__link">
+        COVID-19 Pandemic Analysis
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          NFL Pickem Optimization
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        NFL Pickem Optimization
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#context-survivor-pool" class="md-nav__link">
+    Context: Survivor Pool
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#methods" class="md-nav__link">
+    Methods
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#to-do" class="md-nav__link">
+    To-Do
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quick-start-guide" class="md-nav__link">
+    Quick Start Guide
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#discussion-ideas" class="md-nav__link">
+    Discussion &amp; Ideas
+  </a>
+  
+    <nav class="md-nav" aria-label="Discussion &amp; Ideas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#forecasting-success" class="md-nav__link">
+    Forecasting Success
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#notes-on-future-predictability" class="md-nav__link">
+    Notes on Future Predictability
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#analyzing-elo-forecasts" class="md-nav__link">
+    Analyzing ELO forecasts
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#context-survivor-pool" class="md-nav__link">
+    Context: Survivor Pool
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#methods" class="md-nav__link">
+    Methods
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#to-do" class="md-nav__link">
+    To-Do
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quick-start-guide" class="md-nav__link">
+    Quick Start Guide
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#discussion-ideas" class="md-nav__link">
+    Discussion &amp; Ideas
+  </a>
+  
+    <nav class="md-nav" aria-label="Discussion &amp; Ideas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#forecasting-success" class="md-nav__link">
+    Forecasting Success
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#notes-on-future-predictability" class="md-nav__link">
+    Notes on Future Predictability
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#analyzing-elo-forecasts" class="md-nav__link">
+    Analyzing ELO forecasts
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+
+
+<h1 id="nfl-pickem">NFL Pickem<a class="headerlink" href="#nfl-pickem" title="Permanent link">&para;</a></h1>
+<p>Author: Adam J. Vogt</p>
+<p>The goal of this project is to make an optimal selection of 
+sequential picks of which NFL team will win their particular 
+matchup each week.  </p>
+<p>A <a href="#quickstart">Quick Start Guide</a>, the project
+<a href="#todo">To-Do List</a>, 
+<a href="#historicalsuccess">historical forecasting success</a>
+can be found below</p>
+<h2 id="context-survivor-pool">Context: Survivor Pool<a class="headerlink" href="#context-survivor-pool" title="Permanent link">&para;</a></h2>
+<p>In a survivor pool game, each player must 
+select one NFL team each week that the player thinks 
+will win their particular NFL matchup.
+Multiple players may select the same 
+team in a particular week.
+Players are eliminated from the pool when they reach 
+a set threshold of incorrect picks (e.g. Player A is eliminated 
+in week 6 after 
+making two incorrect picks, one in week 4 and the other in 
+week 6).
+The other constraint is that each Player can maximally pick each 
+team once throughout the season (e.g. Player B selected the 
+New England Patriots last week and therefore cannot select them 
+in future weeks.)</p>
+<p>Given these constraints, a Player would like to make a sequence 
+of picks where their selected NFL teams will have the lowest 
+liklihood of losing (or in some cases drawing) in the week of 
+selection.  Because each team can only be selected once, there 
+is a tradeoff between selecting the team with highest liklihood 
+of winning this week or saving that team for a future week in 
+which there are worse alternative matchups.</p>
+<p>The final consideration is the estimation of a team's liklihood 
+of success in this week versus in that of a future week.  Both 
+the magnitude of the likelihood and the confidence in that 
+estimation for future weeks are factors that affect this 
+selection tradeoff.</p>
+<h2 id="methods">Methods<a class="headerlink" href="#methods" title="Permanent link">&para;</a></h2>
+<p>Two things are needed to make an optimal selection of 
+sequential picks:
+1. a numerical estimation of the liklihood that a team will 
+win thier particular matchup in a given week, and 
+2. an objective to maximize that will increase chances of 
+survival in the pool.</p>
+<p>For the first point, we use 
+<a href="https://projects.fivethirtyeight.com/2018-nfl-predictions/">FiveThrityEight's ELO Ratings</a> 
+model 
+for NFL game predictions. 
+The ELO ratings are combined with home field 
+status to estimate the liklihood that a team will win their 
+particular matchup.  Since the rating does not use time or 
+week of the season as an input, the current rating can be used 
+to estimate that probability for any future matchup.  Ratings 
+are adjusted after each week to account for the team's latest 
+performance. 
+Historical data can be 
+found 
+<a href="https://github.com/fivethirtyeight/nfl-elo-game/blob/master/data/nfl_games.csv">here</a>. 
+An explanation of the model can be 
+<a href="https://fivethirtyeight.com/methodology/how-our-nfl-predictions-work/">here</a>.</p>
+<p>For the second point, we then use these win probabilities 
+to build an objective.  We use a linear mixed-integer 
+optimization to maximize the log of the product of the win 
+probabilities for the sequence of picks. 
+This approximates the probability that all picks will be 
+a success and that there will be no incorrect selections. 
+The problem is 
+constrained by the bounds of the survivor pool game; 
+1. One and only one team/matchup can be selected each week, and 
+2. Each team can be selected maximally one time.</p>
+<p>Because of the uncertainty in the estimation of future 
+liklihood of success, optimal sequences of any length can 
+be calculated and the risks of trading present liklihoods 
+versus future ones can be left to the player.</p>
+<p><a name="todo"></a></p>
+<h2 id="to-do">To-Do<a class="headerlink" href="#to-do" title="Permanent link">&para;</a></h2>
+<ul>
+<li>[x] Build API structure</li>
+<li>[x] initialize by pulling data and creating table <br/>
+  have file name/location be an attribute.</li>
+<li>[x] have method for calculating outcomes <br/>
+  have attributes for prior picks, number of weeks to cover and
+  and how many possible picks each week (or probability threshold)
+  to consider</li>
+<li>[x] create script to compare forecasts of picks</li>
+<li>[x] Run analysis on historical outcomes for picking structure</li>
+<li>[ ] Analyze prediction accuracy for future games</li>
+<li>[ ] Incorporate FiveThirtyEight's new Quarterback adjustment model</li>
+</ul>
+<p><a name="quickstart"></a></p>
+<h2 id="quick-start-guide">Quick Start Guide<a class="headerlink" href="#quick-start-guide" title="Permanent link">&para;</a></h2>
+<p>Be sure to have 
+<a href="https://www.python.org/download/releases/3.0/">Python 3</a> 
+installed on your machine.  For some 
+of these instructions it is useful to have a bash terminal. 
+For Windows users, 
+<a href="https://gitforwindows.org/">Git Bash</a> 
+is a great option.  To ensure python is installed correctly, 
+open a terminal (or command line terminal in windows), and
+enter</p>
+<pre><code class="language-console">$ python
+</code></pre>
+<p>if a python kernel does not open, then it is 
+incorrectly installed.  If you are a windows user, and you trust
+that I am not malicious, you can double click the <code>install.bat</code> 
+shell script to auto install and skip the steps below.  Similarly,
+you can also use the <code>run_make_picks.bat</code> file to automatically
+run the python script.  Just be sure to update the parameters in 
+step #4 below.</p>
+<p><strong>Note</strong> that the <code>qb_elo_model</code> 
+parameter of the <code>build_schedule()</code> method is still 
+not functional.  Only the basic elo model can be 
+used for now.</p>
+<ol>
+<li>Clone/download a copy of this repository.</li>
+</ol>
+<pre><code class="language-console">$ git clone git@github.com:ajvogt/nfl-pickem.git
+</code></pre>
+<ol>
+<li>For the folder containing the repo, 
+install requirements. </li>
+<li>Use the first two commands 
+if you want to protect your local environment, or skip if you are 
+unconcerned.  Use <code>venv/bin/activate</code> for mac.</li>
+</ol>
+<pre><code class="language-console">$ virtualenv venv
+$ source venv/Scripts/activate
+$ pip3 install -r requirements.txt
+</code></pre>
+<ol>
+<li>
+<p>Make sure you have the latest copy of the 
+<a href="https://github.com/fivethirtyeight/nfl-elo-game/blob/master/data/nfl_games.csv">FiveThirtyEight ELO Ratings</a>
+and matchups .csv file in the <code>/data</code> folder.</p>
+</li>
+<li>
+<p>For incomplete seasons, you will need to fill out the 
+   matchup information for the season and at least one ELO 
+   rating per team in the week of their earliest appearance. 
+   For best results, ensure an updated ELO rating at each week.</p>
+</li>
+<li>
+<p>Change the parameters in the <code>make_picks.py</code> script and 
+save.</p>
+</li>
+</ol>
+<pre><code class="language-python">season=2017
+current_week=9
+prior_picks=['NE', 'NO', 'SEA', 'BAL', 'LAR',
+             'DEN', 'JAX', 'PIT']
+auto_update = True # pull data from FiveThirtyEight
+visualize_results = False # beta version
+</code></pre>
+<ol>
+<li>Run the script.</li>
+</ol>
+<pre><code class="language-console">$ python make_picks.py
+</code></pre>
+<ol>
+<li>Profit</li>
+</ol>
+<h2 id="discussion-ideas">Discussion &amp; Ideas<a class="headerlink" href="#discussion-ideas" title="Permanent link">&para;</a></h2>
+<p><a name="historicalsuccess"></a></p>
+<h3 id="forecasting-success">Forecasting Success<a class="headerlink" href="#forecasting-success" title="Permanent link">&para;</a></h3>
+<p>When using a different maximum number of forecasting weeks for the optimization 
+(e.g. how many weeks in the future to consider for pick tradeoffs), there is a 
+slight trend in towards lower expected elimination week and total number of 
+picks correct over the season.  </p>
+<p>Here, the last two decades (seasons 1997-2017) are 
+used to validate the optimization by running varying forecast distances and 
+comparing with actual outcomes of the picks. Elimination week is determined by 
+the week of the second incorrect pick, and total correct is the number of 
+correct picks the player would make during the regular season if there was no 
+elimination. 
+Error bars represent the standard deviation over the seasons in consideration. 
+The forecasting size is the maximum number of weeks over which 
+to consider picks for the optimization.  For instance, for a forecasting 
+size of 5, the player would only consider this week plus the next 5 weeks in 
+the future and make the appropriate tradeoffs in order to maximize the liklihood 
+of have zero incorrect picks over those 6 weeks.  For weeks with 5 games of the 
+final week, the forecasting is limited to the number of weeks remaining in the 
+season (e.g. only considering the additional 2 picks for the last 3 weeks of 
+the season).</p>
+<p><img alt="alt text" src="../images/expected_elimination_week.png" /></p>
+<p><img alt="alt text" src="../images/expected_correct_picks.png" /></p>
+<p>Ultimately, there is a lot of season to season variation without a significant 
+signal towards choice of forecast size. While the trend points towards smaller 
+forecast sizes, the season will be the biggest determination in expected 
+elimination week. This is probably to be expected given the variability in 
+win expectation in NFL football and the uncertainty in future win expectation 
+through the season.</p>
+<h3 id="notes-on-future-predictability">Notes on Future Predictability<a class="headerlink" href="#notes-on-future-predictability" title="Permanent link">&para;</a></h3>
+<p>By considering all week10+ regular season games from 2007 to 2018, if I estimate a
+team's probability of winning a match based on their current elo rating vs. ratings from
+weeks 1-7 prior, the log-loss of the prediction model is pretty stable.  That said, 
+the average probability change for all teams between the current rating and a previous 
+one is on the order of 0.1%.  There is either some stability in a lot of the ELO ratings 
+or the zero-sum nature of the rating system causes fluctuations up and down to balance. 
+That said, the RMSE was still on the order of 1%.</p>
+<h3 id="analyzing-elo-forecasts">Analyzing ELO forecasts<a class="headerlink" href="#analyzing-elo-forecasts" title="Permanent link">&para;</a></h3>
+<p>Need to see how the actual vs. predicted probabilities change when considering
+probabilities for future weeks (e.g. what's the performance when predicting for
+the following week).  If the functional relationship remains linear, one can
+apply a scaling coefficient to the model for predictions in advanced weeks.
+The scaling coefficient will affect the overall probability of success for
+a set of picks, potentially scaling down the need to save teams for future
+weeks.</p>
+<p>If, however, there is a non-linear relationship, then this optimization may
+prove useful in taking advantage of such interaction.</p>
+
+              
+            </article>
+            
+          </div>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+    <nav class="md-footer__inner md-grid" aria-label="Footer" >
+      
+        
+        <a href="../missouri_analysis/" class="md-footer__link md-footer__link--prev" aria-label="Previous: COVID-19 Pandemic Analysis" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              COVID-19 Pandemic Analysis
+            </div>
+          </div>
+        </a>
+      
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    <a href="www.linkedin.com/in/adamjvogt" target="_blank" rel="noopener" title="" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg>
+    </a>
+  
+    
+    
+      
+      
+    
+    <a href="https://github.com/ajvogt" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "..", "features": ["toc.follow", "navigation.instant", "navigation.indexes", "navigation.sections", "navigation.tabs"], "search": "../assets/javascripts/workers/search.b97dbffb.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.6c7ad80a.min.js"></script>
+      
+    
+  </body>
+</html>
