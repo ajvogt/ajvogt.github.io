@@ -3,16 +3,18 @@ site_url: https://ajvogt.github.io
 theme:
   name: material
   features:
-    - toc.follow
-    - navigation.instant
-    - navigation.indexes
-    - navigation.sections
+    # - toc.follow
+    - toc.integrate
+    - navigation.top
     - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.sections
+    - navigation.tracking
+
 markdown_extensions:
-  - admonition
   - toc:
-      permalink: True
-      toc_depth: 2-4
+      permalink: true
+
 plugins:
   - mkdocs-jupyter
 extra:
@@ -22,10 +24,12 @@ extra:
     - icon: fontawesome/brands/github
       link: https://github.com/ajvogt
 nav:
-    - Home: index.md
-    - MNIST Image Classifier: ImageClassification.ipynb
-    - Voting Record Classifier: VotingRecord.ipynb
-    - COVID-19 Pandemic Analysis: missouri_analysis.md
-    - NFL Pickem Optimization: nfl_pickem.md
+    - Home:
+        - Welcome: index.md
+    - "Projects":
+        - MNIST Image Classifier: ImageClassification.ipynb
+        - Voting Record Classifier: VotingRecord.ipynb
+        - COVID-19 Pandemic Analysis: missouri_analysis.md
+        - NFL Pickem Optimization: nfl_pickem.md
 
 
