@@ -24,9 +24,9 @@ extra:
     - icon: fontawesome/brands/github
       link: https://github.com/ajvogt
 nav:
-    - Home:
-        - Welcome: index.md
-    - "Projects":
+    - Home: index.md
+    - Projects:
+        - Introduction: projects.md
         - MNIST Image Classifier: ImageClassification.ipynb
         - Voting Record Classifier: VotingRecord.ipynb
         - COVID-19 Pandemic Analysis: missouri_analysis.md
