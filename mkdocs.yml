@@ -20,7 +20,7 @@ plugins:
 extra:
   social:
     - icon: fontawesome/brands/linkedin
-      link: www.linkedin.com/in/adamjvogt
+      link: https://www.linkedin.com/in/adamjvogt
     - icon: fontawesome/brands/github
       link: https://github.com/ajvogt
 nav:
@@ -31,5 +31,3 @@ nav:
         - Voting Record Classifier: VotingRecord.ipynb
         - COVID-19 Pandemic Analysis: missouri_analysis.md
         - NFL Pickem Optimization: nfl_pickem.md
-
-
